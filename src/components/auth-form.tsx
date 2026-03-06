@@ -1,71 +1,60 @@
-import React, { useState } from "react";
+import { Card, Typography } from "@material-tailwind/react";
 import InputField from "./input";
+import icon from "../assets/icons/logo/study_corner_icon_64.svg";
+import { useState } from "react";
 import Button from "./button";
+
+export type FormField = {
+  label: string;
+  name: string;
+  type?: React.HTMLInputTypeAttribute;
+};
 
 type AuthFormProps = {
   title: string;
   subtitle: string;
+  fields: FormField[];
+  onSubmit: (values: Record<string, string>) => void;
 };
 
-type AuthFormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-};
-
-const AuthForm = ({ title, subtitle }: AuthFormProps) => {
-  const [authFormData, setAuthFormData] = useState<AuthFormData>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
+const AuthForm = ({ title, subtitle, fields, onSubmit }: AuthFormProps) => {
+  const [values, setValues] = useState<Record<string, string>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setAuthFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSubmit(values);
   };
 
   return (
-    <form>
-      {title}
-      {subtitle}
-      <InputField
-        label="First Name"
-        name="firstName"
-        type="string"
-        value={authFormData.firstName}
-        onChange={handleChange}
-      />
-      <InputField
-        label="Last Name"
-        name="lastName"
-        type="string"
-        value={authFormData.lastName}
-        onChange={handleChange}
-      />
-      <InputField
-        label="Email"
-        name="email"
-        type="email"
-        value={authFormData.email}
-        onChange={handleChange}
-      />
-
-      <InputField
-        label="Password"
-        name="password"
-        type="password"
-        value={authFormData.password}
-        onChange={handleChange}
-      />
-
-      <Button type="submit">Sign Up</Button>
-    </form>
+    <Card color="transparent" shadow={false}>
+      <img src={icon} />
+      <Typography variant="h4" color="blue-gray">
+        {title}
+      </Typography>
+      <Typography color="gray" className="mt-1 font-normal">
+        {subtitle}
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        {fields.map((field) => (
+          <InputField
+            key={field.name}
+            label={field.label}
+            name={field.name}
+            type={field.type}
+            value={values[field.name] || ""}
+            onChange={handleChange}
+          />
+        ))}
+        <Button type="submit">Submit</Button>
+      </form>
+    </Card>
   );
 };
 

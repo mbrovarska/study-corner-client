@@ -3,24 +3,31 @@ import React from "react";
 type InputFieldProps = {
   label: string;
   name: string;
-  type: string;
+  type?: React.HTMLInputTypeAttribute;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   error?: string;
 };
 
 const InputField = ({
   label,
   name,
-  type,
+  type = "text",
   value,
   onChange,
   error,
-}: InputFieldProps) => {
+}: InputFieldProps): JSX.Element => {
   return (
     <div>
-      <label>{label}</label>
-      <input name={name} type={type} value={value} onChange={onChange} />
+      <label htmlFor={name}>{label}</label>
+
+      <input
+        id={name}
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+      />
 
       {error && <div>{error}</div>}
     </div>
