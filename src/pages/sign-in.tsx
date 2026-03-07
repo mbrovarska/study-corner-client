@@ -8,12 +8,14 @@ const loginFields: FormField[] = [
 
 const SignUpPage = () => {
   return (
-    <AuthForm
-      title="Welcome to Study Corner"
-      subtitle="Please log in to continue"
-      fields={loginFields}
-      onSubmit={(data) => console.log(data)}
-    />
+    <div className="bg-blue-50">
+      <AuthForm
+        title="Welcome to Study Corner"
+        subtitle="Please log in to continue"
+        fields={loginFields}
+        onSubmit={(data) => console.log(data)}
+      />
+    </div>
   );
 };
 

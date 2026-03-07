@@ -10,12 +10,14 @@ const registerFields: FormField[] = [
 
 const SignUpPage = () => {
   return (
-    <AuthForm
-      title="Create your account"
-      subtitle="Sign up to start organazing your study notes"
-      fields={registerFields}
-      onSubmit={(data) => console.log(data)}
-    />
+    <div className="bg-blue-500">
+      <AuthForm
+        title="Create your account"
+        subtitle="Sign up to start organazing your study notes"
+        fields={registerFields}
+        onSubmit={(data) => console.log(data)}
+      />
+    </div>
   );
 };
 

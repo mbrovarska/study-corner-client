@@ -33,9 +33,9 @@ const AuthForm = ({ title, subtitle, fields, onSubmit }: AuthFormProps) => {
   };
 
   return (
-    <Card color="transparent" shadow={false}>
+    <Card color="transparent" shadow={false} className="w-xs bg-red-500">
       <img src={icon} />
-      <Typography variant="h4" color="blue-gray">
+      <Typography variant="h4" color="red">
         {title}
       </Typography>
       <Typography color="gray" className="mt-1 font-normal">
