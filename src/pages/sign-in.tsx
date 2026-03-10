@@ -8,7 +8,7 @@ const loginFields: FormField[] = [
 
 const SignUpPage = () => {
   return (
-    <div className="bg-blue-50">
+    <div className="auth-page-wrapper">
       <AuthForm
         title="Welcome to Study Corner"
         subtitle="Please log in to continue"

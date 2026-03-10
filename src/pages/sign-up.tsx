@@ -10,7 +10,7 @@ const registerFields: FormField[] = [
 
 const SignUpPage = () => {
   return (
-    <div className="bg-blue-500">
+    <div className="auth-page-wrapper">
       <AuthForm
         title="Create your account"
         subtitle="Sign up to start organazing your study notes"
