@@ -18,8 +18,10 @@ const InputField = ({
   error,
 }: InputFieldProps): JSX.Element => {
   return (
-    <div>
-      <label htmlFor={name}>{label}</label>
+    <div className="input-wrapper">
+      <label className="form-label" htmlFor={name}>
+        {label}
+      </label>
 
       <input
         id={name}
@@ -27,6 +29,7 @@ const InputField = ({
         type={type}
         value={value}
         onChange={onChange}
+        className="input-field"
       />
 
       {error && <div>{error}</div>}

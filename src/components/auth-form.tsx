@@ -1,6 +1,6 @@
 import { Card, Typography } from "@material-tailwind/react";
 import InputField from "./input";
-import icon from "../assets/icons/logo/study_corner_icon_32.svg";
+import icon from "../assets/icons/logo/study_corner_icon_64.svg";
 import { useState } from "react";
 import Button from "./button";
 
@@ -35,13 +35,13 @@ const AuthForm = ({ title, subtitle, fields, onSubmit }: AuthFormProps) => {
   return (
     <Card color="transparent" shadow={false} className="auth-form-wrapper">
       <img className="logo-icon" src={icon} />
-      <Typography variant="h4" className="">
+      <Typography variant="h4" className="form-title">
         {title}
       </Typography>
-      <Typography color="gray" className="mt-1 font-normal">
+      <Typography color="gray" className="form-subtitle">
         {subtitle}
       </Typography>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         {fields.map((field) => (
           <InputField
             key={field.name}
@@ -52,7 +52,9 @@ const AuthForm = ({ title, subtitle, fields, onSubmit }: AuthFormProps) => {
             onChange={handleChange}
           />
         ))}
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="sbt-btn">
+          Submit
+        </Button>
       </form>
     </Card>
   );

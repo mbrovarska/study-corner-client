@@ -5,9 +5,13 @@
 
 @layer base {
   :root {
-    --color-mint-500: oklch(0.72 0.11 178);
     --color-common-1: white;
+    --color-common-2: #e0e4ea;
     --color-bg-1: #ebf1ff;
+    --color-text-neutral-1: #0e121b;
+    --color-text-neutral-2: #525866;
+    --color-btn-primary: #2547d0;
+    --color-input-border-1: #cacfd8;
   }
   html,
   body,
@@ -28,19 +32,48 @@
   }
 
   .auth-form-wrapper {
-    @apply flex flex-col items-center justify-center;
+    @apply flex flex-col items-center justify-center rounded-xl border-1 m-8;
     background-color: var(--color-common-1);
+    border-color: var(--color-common-2);
     max-width: 540px;
     padding: 15px;
   }
 
   .logo-icon {
-    max-width: 20%;
+    @apply mb-8;
+    max-width: 25%;
   }
 
-  .btn-primary {
-    @apply px-4 py-2 rounded-md font-medium;
-    background-color: var(--color-mint-500);
+  .form {
+    @apply flex flex-col items-center justify-center;
+  }
+
+  .form-title {
+    @apply font-bold text-2xl mb-3;
+    color: var(--color-text-neutral-1);
+  }
+
+  .form-subtitle {
+    @apply font-normal text-sm;
+    color: var(--color-text-neutral-2);
+  }
+
+  .input-wrapper {
+    @apply flex flex-col;
+  }
+
+  .form-label {
+    @apply font-medium ml-2;
+    color: var(--color-text-neutral-1);
+  }
+
+  .input-field {
+    @apply m-2 w-md border-1 rounded-md h-10;
+    border-color: var(--color-input-border-1);
+  }
+  .sbt-btn {
+    @apply px-4 py-2 rounded-md font-medium mt-4 w-md;
+    background-color: var(--color-btn-primary);
     color: var(--color-common-1);
   }
 }

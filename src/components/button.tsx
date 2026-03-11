@@ -6,6 +6,7 @@ type ButtonProps = {
   onClick?: () => void;
   disabled?: boolean;
   loading?: boolean;
+  className: string;
 };
 
 const Button = ({
@@ -14,9 +15,15 @@ const Button = ({
   onClick,
   disabled,
   loading,
+  className,
 }: ButtonProps) => {
   return (
-    <button type={type} onClick={onClick} disabled={disabled || loading}>
+    <button
+      className={className}
+      type={type}
+      onClick={onClick}
+      disabled={disabled || loading}
+    >
       {loading ? "Loading..." : children}
     </button>
   );
