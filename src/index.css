@@ -27,7 +27,7 @@
 /* REUSABLE COMPONENT STYLES */
 @layer components {
   .auth-page-wrapper {
-    @apply min-h-screen w-full min-h-screen flex items-center justify-center;
+    @apply min-h-screen flex items-center justify-center w-screen;
     background-color: var(--color-bg-1);
   }
 
@@ -40,12 +40,12 @@
   }
 
   .logo-icon {
-    @apply mb-8;
+    @apply mb-8 mt-4;
     max-width: 25%;
   }
 
   .form {
-    @apply flex flex-col items-center justify-center;
+    @apply flex flex-col items-center justify-center p-8;
   }
 
   .form-title {
@@ -68,11 +68,11 @@
   }
 
   .input-field {
-    @apply m-2 w-md border-1 rounded-md h-10;
+    @apply m-2 w-72 lg:w-md border-1 rounded-md h-10;
     border-color: var(--color-input-border-1);
   }
   .sbt-btn {
-    @apply px-4 py-2 rounded-md font-medium mt-4 w-md;
+    @apply px-4 py-2 rounded-md font-medium mt-4 w-72 lg:w-md;
     background-color: var(--color-btn-primary);
     color: var(--color-common-1);
   }
