@@ -26,6 +26,18 @@
 
 /* REUSABLE COMPONENT STYLES */
 @layer components {
+  .header-wrapper {
+    @apply mx-auto max-w-screen-xl px-4 py-3 md:px-6;
+  }
+
+  .header-container {
+    @apply: flex items-center justify-between text-blue-gray-900;
+  }
+
+  .desktop-header-wrapper {
+    @apply hidden lg:flex items-center gap-2;
+  }
+
   .auth-page-wrapper {
     @apply min-h-screen flex items-center justify-center w-screen;
     background-color: var(--color-bg-1);

@@ -1,5 +1,6 @@
 import AuthForm from "../components/auth-form";
 import type { FormField } from "../components/auth-form";
+import HeaderNav from "../components/header-nav";
 
 const registerFields: FormField[] = [
   { label: "First Name", name: "firstName" },
@@ -10,14 +11,17 @@ const registerFields: FormField[] = [
 
 const SignUpPage = () => {
   return (
-    <div className="auth-page-wrapper">
-      <AuthForm
-        title="Create your account"
-        subtitle="Sign up to start organazing your study notes"
-        fields={registerFields}
-        onSubmit={(data) => console.log(data)}
-      />
-    </div>
+    <>
+      <HeaderNav />
+      <div className="auth-page-wrapper">
+        <AuthForm
+          title="Create your account"
+          subtitle="Sign up to start organazing your study notes"
+          fields={registerFields}
+          onSubmit={(data) => console.log(data)}
+        />
+      </div>
+    </>
   );
 };
 
