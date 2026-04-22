@@ -3,22 +3,32 @@ import InputField from "./input";
 import icon from "../assets/icons/logo/study_corner_icon_64.svg";
 import { useState } from "react";
 import Button from "./button";
+import { useAppSelector } from "../hooks/redux";
 
-export type FormField = {
+export type FormField<T> = {
   label: string;
-  name: string;
+  name: keyof T;
   type?: React.HTMLInputTypeAttribute;
 };
 
-type AuthFormProps = {
+type AuthFormProps<T extends object> = {
   title: string;
   subtitle: string;
-  fields: FormField[];
-  onSubmit: (values: Record<string, string>) => void;
+  fields: FormField<T>[];
+  initialValues: T;
+  onSubmit: (values: T) => Promise<void>;
 };
 
-const AuthForm = ({ title, subtitle, fields, onSubmit }: AuthFormProps) => {
-  const [values, setValues] = useState<Record<string, string>>({});
+const AuthForm = <T extends object>({
+  title,
+  subtitle,
+  fields,
+  initialValues,
+  onSubmit,
+}: AuthFormProps<T>) => {
+  const { loading, error } = useAppSelector((state) => state.auth);
+
+  const [values, setValues] = useState<T>(initialValues);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({
@@ -27,9 +37,9 @@ const AuthForm = ({ title, subtitle, fields, onSubmit }: AuthFormProps) => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit(values);
+    await onSubmit(values);
   };
 
   return (
@@ -44,16 +54,18 @@ const AuthForm = ({ title, subtitle, fields, onSubmit }: AuthFormProps) => {
       <form onSubmit={handleSubmit} className="form">
         {fields.map((field) => (
           <InputField
-            key={field.name}
+            key={String(field.name)}
             label={field.label}
-            name={field.name}
+            name={String(field.name)}
             type={field.type}
-            value={values[field.name] || ""}
+            value={String(values[field.name] ?? "")}
             onChange={handleChange}
           />
         ))}
-        <Button type="submit" className="sbt-btn">
-          Submit
+        {error && <Typography color="red">{error}</Typography>}
+
+        <Button type="submit" className="sbt-btn" disabled={loading}>
+          {loading ? "Submitting..." : "Submit"}
         </Button>
       </form>
     </Card>

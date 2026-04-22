@@ -97,7 +97,7 @@ const HeaderNav = () => {
           <a href="/">Home</a>
           <a href="/about">About</a>
           <a href="/sign-in">Sign In</a>
-          <a href="/sign up">Sign Up</a>
+          <a href="/sign-up">Sign Up</a>
         </div>
       )}
     </Navbar>

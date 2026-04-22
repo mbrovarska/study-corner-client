@@ -1,8 +1,11 @@
 import AuthForm from "../components/auth-form";
 import type { FormField } from "../components/auth-form";
 import HeaderNav from "../components/header-nav";
+import { signUpUser, clearAuthError } from "../features/auth/authSlice";
+import { useAppDispatch } from "../hooks/redux";
+import type { SignUpPayload } from "../features/auth/types";
 
-const registerFields: FormField[] = [
+const registerFields: FormField<SignUpPayload>[] = [
   { label: "First Name", name: "firstName" },
   { label: "Last Name", name: "lastName" },
   { label: "Email", name: "email", type: "email" },
@@ -10,6 +13,8 @@ const registerFields: FormField[] = [
 ];
 
 const SignUpPage = () => {
+  const dispatch = useAppDispatch();
+
   return (
     <>
       <HeaderNav />
@@ -18,7 +23,19 @@ const SignUpPage = () => {
           title="Create your account"
           subtitle="Sign up to start organazing your study notes"
           fields={registerFields}
-          onSubmit={(data) => console.log(data)}
+          initialValues={{
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+          }}
+          onSubmit={async (values) => {
+            try {
+              await dispatch(signUpUser(values)).unwrap();
+            } catch {
+              dispatch(clearAuthError());
+            }
+          }}
         />
       </div>
     </>
